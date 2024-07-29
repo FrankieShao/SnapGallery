@@ -1,0 +1,63 @@
+name: snapgallery_root
+
+packages:
+  - app
+  - packages/**
+
+scripts:
+  run_ios_debug:
+    run: melos exec -c 1 --scope="app" -- "flutter run --debug --device-id=15M"
+    description: Run the app in debug mode on an iOS device
+
+  get:
+    run: melos exec -- "flutter pub get"
+    description: Get packages for all projects
+
+  build_debug_apk:
+    run: melos exec -c 1 --scope="app" -- "flutter build apk --debug"
+    description: Build debug APK for Android
+
+  # Build debug for iOS
+  build_debug_ios:
+    run: melos exec -c 1 --scope="app" -- "flutter build ios --debug --no-codesign"
+    description: Build debug for iOS without codesigning
+
+  build_debug:
+    run: melos run build_debug_apk && melos run build_debug_ios
+    description: Build debug versions for both Android and iOS
+  
+  build_release_apk:
+    run: melos exec -c 1 --scope="app" -- "flutter build apk --release"
+    description: Build APK for Android
+  
+  build_release_ios:
+    run: melos exec -c 1 --scope="app" -- "flutter build ios --release --no-codesign"
+    description: Build for iOS without codesigning
+
+  build_release:
+    run: melos run build_release_apk && melos run build_release_ios
+    description: Build release versions for both Android and iOS
+
+  build_domain:
+    run: melos exec -c 1 --scope="domain" -- "dart run build_runner build --delete-conflicting-outputs"
+    description: Build domain module (run code generation)
+  
+  build_network:
+    run: melos exec -c 1 --scope="network" -- "dart run build_runner build --delete-conflicting-outputs"
+    description: Build network module (run code generation)
+  
+  build_data:
+    run: melos exec -c 1 --scope="data" -- "dart run build_runner build --delete-conflicting-outputs"
+    description: Build data module (run code generation)
+
+  build_app:
+    run: melos exec -c 1 --scope="app" -- "dart run build_runner build --delete-conflicting-outputs"
+    description: Build app module (run code generation)
+
+  build_all:
+    run: dart pub global run melos exec --depends-on="build_runner" "flutter packages pub run build_runner build"
+    description: build_runner build all modules.
+
+  test:
+    run: melos exec -- "flutter test"
+    description: Run tests for all projects
