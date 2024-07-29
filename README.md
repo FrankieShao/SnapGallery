@@ -12,6 +12,7 @@ Supports: Android 📱, iOS📱
   - Presentation Layer: Contains UI and state management (Bloc).
   - Domain Layer: Contains business logic (Use cases).
   - Data Layer: Handles data retrieval from the Unsplash API and caching.
+- **Modularization** - [melos](https://pub.dev/packages/melos)
 - **State Management** - [Bloc](https://pub.dev/packages/flutter_bloc)
 - **Dependency Injection** - [get_it](https://pub.dev/packages/get_it), [injectable](https://pub.dev/packages/injectable)
 - **Networking** - [Dio](https://pub.dev/packages/dio)
@@ -67,7 +68,6 @@ Obtain an API key from [unsplash](https://unsplash.com/developers
    REDIRECT_URI=
    ```
 ### Todo
-- modularization 
 - Unit Tests
 
 ### Contribute
